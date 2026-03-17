@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import os
-import submission_turret as student
+import turret_submission as student
 
 def run_autograder():
     # --- CONFIGURATION ---

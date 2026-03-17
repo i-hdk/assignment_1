@@ -1,7 +1,7 @@
 import cv2
 import os
 import numpy as np
-import submission_yolo
+import yolo_submission
 
 class MockRenderer:
     """Fakes the Mujoco Renderer to return static test images."""
@@ -47,7 +47,7 @@ def run_tests():
     print("--- Starting Gradescope-style YOLO Autograder ---")
     
     # Pre-load the model once
-    submission_yolo.load_yolo_model()
+    yolo_submission.load_yolo_model()
 
     for filename, min_expected, search_term, expected_results in test_cases:
         image_path = os.path.join(test_folder, filename)
@@ -63,7 +63,7 @@ def run_tests():
             mock_renderer = MockRenderer(image_path)
             
             # Call the user's function
-            _, results = submission_yolo.detect_objects(mock_renderer.render(), search_term)
+            _, results = yolo_submission.detect_objects(mock_renderer.render(), search_term)
             
             # Get detection count from YOLO results
             detections = len(results)

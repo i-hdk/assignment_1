@@ -8,7 +8,7 @@ import shutil
 import re
 import queue 
 import multiprocessing
-from submission_yolo import detect_objects
+from yolo_submission import detect_objects
 
 def run_worker_process(image_queue, stop_event):
     window_name = "Robot Camera Feed"

@@ -3,7 +3,7 @@ import sys
 import argparse
 import numpy as np
 
-import submission_dead_reckoning as student
+import dead_reckoning_submission as student
 
 
 # --------------------------

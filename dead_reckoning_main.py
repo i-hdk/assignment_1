@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import mujoco
 import mujoco.viewer
 
-import submission_dead_reckoning as student
+import dead_reckoning_submission as student
 
 
 # --------------------------

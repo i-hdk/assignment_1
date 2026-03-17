@@ -5,7 +5,7 @@ import time
 import cv2 
 import multiprocessing
 import queue 
-import submission_turret as student
+import turret_submission as student
 
 # -----------------------------------------------------------------------------
 # SEPARATE PROCESS: GUI WORKER

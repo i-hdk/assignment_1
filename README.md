@@ -122,8 +122,8 @@ You know you are done when:
 ### Autograder
 
 After you're happy with your implementation, run the autograder to check that you haven't missed anything critical. This is the same autograder tests that we will run for grading.
-* Windows `python assignment_1\autograder_turret.py`
-* MacOS `python assignment_1/autograder_turret.py`
+* Windows `python assignment_1\turret_autograder.py`
+* MacOS `python assignment_1/turret_autograder.py`
 
 ## Problem 4 (25 Points): YOLO searching
 
