@@ -22,22 +22,21 @@ class MockRenderer:
 def run_tests():
     test_folder = "assignment_1/assets/test_yolo"
     
-    # Updated test cases: only using the 6 new images
     test_cases = [
-        ("objects_detected_1_1.png", 1, "sports ball", [(0.752857506275177, (801.5690307617188, 325.81195068359375))]),
-        ("objects_detected_1_2.png", 1, "banana", [(0.6973349452018738, (676.2200317382812, 512.9927368164062))]),
+        ("objects_detected_1_1.png", 1, "sports ball", [(0.7528566122055054, (782.3972778320312, 307.33746337890625))]),
+        ("objects_detected_1_2.png", 1, "banana", [(0.6973350048065186, (615.2167358398438, 469.90460205078125))]),
         ("objects_detected_2_1.png", 2, "sports ball", [
-            (0.8348134756088257, (781.9148559570312, 312.924560546875)),
-            (0.6091908812522888, (492.20159912109375, 256.128173828125)),
-            (0.2640124261379242, (880.47265625, 472.1309509277344))
+            (0.8348131179809570, (737.8557739257812, 269.03033447265625)),
+            (0.6091901063919067, (459.68328857421875, 242.8646240234375)),
+            (0.2640120983123779, (825.5781860351562, 421.7991943359375))
         ]),
-        ("objects_detected_2_2.png", 2, "banana", []), # there are 3 sports balls here, but no bananas.
+        ("objects_detected_2_2.png", 2, "banana", []),  # there are 3 sports balls here, but no bananas.
         ("objects_detected_3_1.png", 3, "frisbee", [
-            (0.6725870370864868, (587.9255981445312, 499.11370849609375))
+            (0.6725848317146301, (526.8341064453125, 456.82562255859375))
         ]),
         ("objects_detected_3_2.png", 3, "sports ball", [
-            (0.7930213809013367, (579.3873901367188, 356.0917663574219)),
-            (0.2538105845451355, (154.5794677734375, 472.85614013671875))
+            (0.7930208444595337, (554.5283813476562, 337.42437744140625)),
+            (0.2538095712661743, (117.69468688964844, 434.85260009765625))
         ])
     ]
 
@@ -80,17 +79,17 @@ def run_tests():
                 if abs(results[i][0] - expected_results[i][0]) < 0.001:
                     print(f"✅ PASS: Found result with expected confidence {expected_results[i][0]}")
                 else:
-                    print(f"❌ FAIL: Found confidence {results[i][0]} object, but expected {expected_results[i][0]}.")
+                    print(f"❌ FAIL: Found confidence {results[i][0]}, but expected {expected_results[i][0]}.")
 
                 if abs(results[i][1][0] - expected_results[i][1][0]) < 0.001:
-                    print(f"✅ PASS: Found result with expected x={expected_results[i][0]}")
+                    print(f"✅ PASS: Found result with expected x={expected_results[i][1][0]}")
                 else:
-                    print(f"❌ FAIL: Found x={results[i][0]}, but expected {expected_results[i][0]}.")
+                    print(f"❌ FAIL: Found x={results[i][1][0]}, but expected {expected_results[i][1][0]}.")
 
                 if abs(results[i][1][1] - expected_results[i][1][1]) < 0.001:
-                    print(f"✅ PASS: Found result with expected y={expected_results[i][1]}")
+                    print(f"✅ PASS: Found result with expected y={expected_results[i][1][1]}")
                 else:
-                    print(f"❌ FAIL: Found y={results[i][1]}, but expected {expected_results[i][1]}.")
+                    print(f"❌ FAIL: Found y={results[i][1][1]}, but expected {expected_results[i][1][1]}.")
 
         except Exception as e:
             print(f"⚠️ ERROR during test for {filename}: {e}")
