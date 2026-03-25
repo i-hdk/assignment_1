@@ -52,19 +52,19 @@ def ticks2vel(leftEnc, rightEnc, encoderResolution, timeStep, wheelRadius, wheel
     #   We want omega_l and omega_r to be expressed in radians/seconds
     # Hint: you can use a loop, but you can also the same trick we did
     # to compute dphi_l and dphi_r.
-    # TODO: omega_l = ...
-    # TODO: omega_r = ...
+    omega_l = dphi_l / timeStep
+    omega_r = dphi_r / timeStep
 
     # 4. Wheel linear velocities (m/s)
     # Now that you have the angular velocities, convert these to linear velocities (m/s)
-    # TODO: v_l = ...
-    # TODO: v_r = ...
+    v_l = omega_l * wheelRadius
+    v_r = omega_r * wheelRadius
 
     # 5. Differential drive kinematics
     # TODO: compute vf (velocity forward) and omega (angular velocity) based on values above 
     # (replacing the plaeholder assignments below.)
-    vf = np.zeros(N-1)
-    omega = np.zeros(N-1)
+    vf = (v_l + v_r) / 2.0
+    omega = (v_r - v_l) / wheelBase
 
     return vf, omega
 
@@ -125,11 +125,11 @@ def dead_reckoning_from_encoders(leftEnc, rightEnc, dt, encoderResolution, wheel
     # 4. Integrate pose, write your code here:
     for k in range(1,N):
         # TODO: compute th[k] based on th[k-1] and the direction and velocity
-        th[k] = th[k-1] # TODO
+        th[k] = th[k-1] + omega[k-1] * dt
         # TODO: compute x[k] based on x[k-1] and the direction and velocity
-        x[k] = x[k-1] # TODO
+        x[k] = x[k-1] + vf[k-1] * np.cos(th[k-1]) * dt
         # TODO: compute y[k] based on y[k-1] and the direction and velocity
-        y[k] = y[k-1] # TODO
+        y[k] = y[k-1] + vf[k-1] * np.sin(th[k-1]) * dt
 
     return t, x, y, th, vf, omega
     

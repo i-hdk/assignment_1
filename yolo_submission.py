@@ -37,11 +37,11 @@ def detect_objects(img, target_name="sports ball"):
     
     # TODO: Use the yolo_model to run YOLO detection
     
-    yolo_results = None # TODO: YOLO Model results on img
+    yolo_results = yolo_model(img) # TODO: YOLO Model results on img
 
     # TODO: once you have this running, make sure you return it, you'll
     # start seeing the results in the window.
-    annotated_img = None # TODO: results rendered on img
+    annotated_img = yolo_results[0].plot() # TODO: results rendered on img
 
     # TODO: process results, look for a detections with the class name 
     # target_name (default "sports ball")
@@ -58,7 +58,20 @@ def detect_objects(img, target_name="sports ball"):
     #    ]
     search_results = []
 
-    # for r in yolo_results:
+    for r in yolo_results:
+        print(r.names)
+        print(r.boxes.xyxy)
+        print(r.boxes.cls)
+        i = 0
+        for idx in r.boxes.cls :
+            print("idx is ")
+            print(idx)
+            print(r.names.get (int(idx)) )
+            if r.names.get (int(idx))  == target_name :
+                (x1,y1,x2,y2) = r.boxes.xyxy[i]
+                search_results.append((r.boxes.conf, ((x1+y1)/2.0, (x2+y2)/2.0)))
+            i+=1
+    
     #    # see https://docs.ultralytics.com/modes/predict/#boxes for details
     #    # Note: r.names is a list that is indexed by result class
     #    r.boxes.cls is a list of all class indexes (they're floats, so you'll need to cast to int to index into r.names)

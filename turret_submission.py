@@ -62,15 +62,15 @@ def find_target(imageRGB):
 
     # 1. Define color range for the glowing ball target
     # TODO: set the lower and upper ranges to select target pixels
-    lower_red = np.array([0, 0, 0])  # Lower bound of red in HSV
-    upper_red = np.array([255, 255, 255])  # Upper bound of red in HSV
+    lower_red = np.array([170, 250, 245])  # Lower bound of red in HSV
+    upper_red = np.array([179, 255, 255])  # Upper bound of red in HSV
 
-    lower_red2 = np.array([0, 0, 0])  # Lower bound of red in HSV
-    upper_red2 = np.array([255, 255, 255])  # Upper bound of red in HSV
+    lower_red2 = np.array([0, 240, 240])  # Lower bound of red in HSV
+    upper_red2 = np.array([10, 255, 255])  # Upper bound of red in HSV
 
     # 3. Threshold the image using OpenCV inRange method
-    mask1 = 0 # TODO: use the OpenCV inRange method to create a binary image based on thresholds lower_red and upper_red
-    mask2 = 0 # TODO: use the OpenCV inRange method to create another binary from the second set of thresholds
+    mask1 = cv2.inRange(hsv, lower_red, upper_red) # TODO: use the OpenCV inRange method to create a binary image based on thresholds lower_red and upper_red
+    mask2 = cv2.inRange(hsv, lower_red2, upper_red2) # TODO: use the OpenCV inRange method to create another binary from the second set of thresholds
 
     # Combine masks (note: you can create more masks and combine them with the | operator here)
     mask = mask1 | mask2
@@ -82,7 +82,7 @@ def find_target(imageRGB):
     contours = None
     # 3. Find contours in the mask
     # Once your masks are defined, uncomment the following:
-    # contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     if contours:
         # Find the largest contour
